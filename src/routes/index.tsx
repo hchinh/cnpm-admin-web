@@ -1,19 +1,21 @@
-import NotFoundPage from 'containers/404Page';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import publicRoutes from './PublicRoutes';
+import NotFoundPage from 'containers/404Page'
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import PrivateRoutes from './PrivateRoutes'
+import publicRoutes from './PublicRoutes'
 
 const AppRoutes = () => {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path='/404' element={<NotFoundPage />} />
+      <BrowserRouter>
+        <Switch>
+          <Route path='/404' component={NotFoundPage} />
           {publicRoutes()}
-        </Routes>
-      </Router>
+          <PrivateRoutes />
+        </Switch>
+      </BrowserRouter>
     </>
-  );
-};
+  )
+}
 
-export default React.memo(AppRoutes);
+export default React.memo(AppRoutes)

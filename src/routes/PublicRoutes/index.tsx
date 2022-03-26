@@ -1,24 +1,28 @@
-import { Route } from 'react-router-dom';
-import { TPublicRoutes } from 'routes/interface';
+import { Route } from 'react-router-dom'
 
-export const PUBLIC_ROUTES: TPublicRoutes = [
-  {
-    path: '/',
-    element: <div>Home</div>,
-    exact: true,
-  },
+export const PUBLIC_ROUTES = [
   {
     path: '/login',
-    element: <div>Login</div>,
+    component: () => <div>Login</div>,
     exact: true,
   },
   {
     path: '/register',
-    element: <div>Register</div>,
+    component: () => <div />,
     exact: true,
   },
-];
+  {
+    path: '/forgot-password',
+    component: () => <div />,
+    exact: true,
+  },
+  {
+    path: '/resetPassword',
+    component: () => <div />,
+    exact: true,
+  },
+]
 
-const publicRoutes = () => PUBLIC_ROUTES.map((route) => <Route {...route} key={route.path} />);
+const publicRoutes = () => PUBLIC_ROUTES.map((route) => <Route {...route} key={route.path} />)
 
-export default publicRoutes;
+export default publicRoutes

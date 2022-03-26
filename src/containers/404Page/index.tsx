@@ -1,4 +1,4 @@
-import NotFoundPageWrapper from './styles';
+import NotFoundPageWrapper from './styles'
 
 const NotFoundPage = () => {
   return (
@@ -10,7 +10,7 @@ const NotFoundPage = () => {
         </div>
       </div>
     </NotFoundPageWrapper>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

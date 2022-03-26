@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export default styled.div`
   height: 100vh;
@@ -35,4 +35,4 @@ export default styled.div`
   @media only screen and (max-width: 425px) {
     display: none;
   }
-`;
+`
