@@ -121,4 +121,4 @@ export const theme = {
   drawer: {
     cancelBtnBg: '#F5F5F5',
   },
-};
+}

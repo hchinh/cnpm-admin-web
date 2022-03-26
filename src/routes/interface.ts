@@ -1,14 +1,16 @@
-import { ReactElement } from 'react';
+import { FC } from 'react'
 
-export interface IBasePublicRoute {
-  path: string;
-  element: ReactElement;
-  exact?: boolean;
+export interface IBasePrivateRoute {
+  path: string
+  Component: FC
+  exact?: boolean
+  title?: string
 }
 
-export interface IPublicRoute {
-  path: string;
-  routes?: IBasePublicRoute[];
+export interface IPrivateRoute {
+  path: string
+  routes?: IBasePrivateRoute[]
+  title?: string
 }
 
-export declare type TPublicRoutes = (IBasePublicRoute | IPublicRoute)[];
+export declare type TPrivateRoutes = (IBasePrivateRoute | IPrivateRoute)[]
