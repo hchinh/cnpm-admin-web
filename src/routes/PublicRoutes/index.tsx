@@ -1,9 +1,10 @@
+import LoginPage from 'containers/Login'
 import { Route } from 'react-router-dom'
 
 export const PUBLIC_ROUTES = [
   {
     path: '/login',
-    component: () => <div>Login</div>,
+    component: LoginPage,
     exact: true,
   },
   {
