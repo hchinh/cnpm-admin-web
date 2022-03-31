@@ -1,12 +1,17 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Space } from 'antd'
+import { LoginPayload } from 'interfaces'
 import React, { FC } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { login } from 'redux/authSlice'
 import { LoginPageStyles } from './styles'
 
 const LoginPage: FC = () => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
+  const dispatch = useDispatch()
+
+  const onFinish = (values: LoginPayload) => {
+    dispatch(login(values))
   }
 
   return (
@@ -27,7 +32,7 @@ const LoginPage: FC = () => {
           <Form.Item label='Username'>
             <Space>
               <Form.Item
-                name='username'
+                name='userName'
                 noStyle
                 rules={[{ required: true, message: 'Please input your Username!' }]}
               >
