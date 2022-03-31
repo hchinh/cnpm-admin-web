@@ -1,4 +1,3 @@
-import LaunchScreen from 'components/common/LaunchScreen'
 import { FC } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { IBasePrivateRoute } from 'routes/interface'
@@ -8,18 +7,12 @@ interface Props extends IBasePrivateRoute {
 }
 
 const PrivateRoute: FC<Props> = ({ Component, title, ...rest }) => {
-  const isAuthenticated = localStorage.getItem('token')
-
-  const loading = localStorage.getItem('loading')
-
-  if (loading) return <Route component={LaunchScreen} />
+  const isAuth = localStorage.getItem('token')
 
   return (
     <Route
       {...rest}
-      render={(props) =>
-        isAuthenticated ? <Component /> : <Redirect to={{ pathname: '/login' }} />
-      }
+      render={(props) => (isAuth ? <Component /> : <Redirect to={{ pathname: '/login' }} />)}
     />
   )
 }
