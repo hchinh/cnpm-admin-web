@@ -1,62 +1,53 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import authApi from 'api/authApi'
 import { RootState } from 'app/store'
 import { LoginPayload, User } from 'interfaces'
 
-export interface AuthError {
-  message: string
-}
-
 export interface AuthState {
-  isAuth: boolean
   currentUser?: User
-  isLoading: boolean
-  error: AuthError
 }
 
 export const initialState: AuthState = {
-  isAuth: false,
-  isLoading: false,
-  error: { message: 'An Error occurred' },
+  currentUser: undefined,
 }
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLoading: (state, action) => {
-      state.isLoading = action.payload
-    },
-    setAuthSuccess: (state, action: PayloadAction<User>) => {
-      state.currentUser = action.payload
-      state.isAuth = true
-    },
-    setLogOut: (state) => {
-      state.isAuth = false
+    logout: (state) => {
+      localStorage.removeItem('token')
+      localStorage.removeItem('username')
+      localStorage.removeItem('id')
+
       state.currentUser = undefined
     },
-    setAuthFailed: (state, action) => {
-      state.error = action.payload
-      state.isAuth = false
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(login.fulfilled, (state, action) => {
+      state.currentUser = action.payload
+    })
   },
 })
 
 export const login = createAsyncThunk('/login', async (payload: LoginPayload, { dispatch }) => {
   try {
-    dispatch(setLoading(true))
     const response = await authApi.login(payload)
-    dispatch(
-      setAuthSuccess({ userName: response.username, id: response.id, email: response.email })
-    )
+    localStorage.setItem('token', response.token)
+    localStorage.setItem('username', response.username)
+    localStorage.setItem('id', response.id)
+
+    return {
+      id: response.id,
+      username: response.username,
+      email: response.email,
+    }
   } catch (error) {
-    dispatch(setAuthFailed(error))
-  } finally {
-    dispatch(setLoading(false))
+    console.log(error)
   }
 })
 
-export const { setLoading, setAuthSuccess, setLogOut, setAuthFailed } = authSlice.actions
+export const { logout } = authSlice.actions
 
 export const authSelector = (state: RootState) => state.auth
 

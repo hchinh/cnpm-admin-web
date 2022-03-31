@@ -1,17 +1,25 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { unwrapResult } from '@reduxjs/toolkit'
 import { Button, Form, Input, Space } from 'antd'
+import { useAppDispatch } from 'app/hooks'
 import { LoginPayload } from 'interfaces'
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { login } from 'redux/authSlice'
 import { LoginPageStyles } from './styles'
 
 const LoginPage: FC = () => {
-  const dispatch = useDispatch()
+  const { push } = useHistory()
+  const dispatch = useAppDispatch()
 
-  const onFinish = (values: LoginPayload) => {
-    dispatch(login(values))
+  const onFinish = async (values: LoginPayload) => {
+    try {
+      const resultAction = await dispatch(login(values))
+      unwrapResult(resultAction)
+      push('/')
+    } catch (error) {
+      console.log('Failed to login: ', error)
+    }
   }
 
   return (
