@@ -11,3 +11,29 @@ export interface AuthResponse {
   type: 'Bearer'
   role: ROLES
 }
+
+export interface PaginationParams {
+  page: number
+  limit: number
+  total: number
+}
+
+export interface ApiResponse<T> {
+  content: T[]
+  number: number
+  size: number
+  totalElements: number
+}
+
+export interface ListResponse<T> {
+  data: T[]
+  pagination: PaginationParams
+}
+
+export interface ListParams {
+  page?: number
+  limit?: number
+  sort?: string
+
+  [key: string]: any
+}
