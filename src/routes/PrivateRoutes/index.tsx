@@ -1,3 +1,4 @@
+import ProductList from 'containers/Product/List'
 import PrivateLayout from 'layouts/PrivateLayout'
 import { flatMap, map } from 'lodash'
 import { Redirect, Switch } from 'react-router-dom'
@@ -13,7 +14,7 @@ const routes: TPrivateRoutes = [
   },
   {
     path: '/products',
-    Component: () => <div>Products</div>,
+    Component: ProductList,
     exact: true,
     title: 'Products',
   },

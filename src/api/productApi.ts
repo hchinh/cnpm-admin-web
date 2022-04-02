@@ -22,17 +22,32 @@ const productApi = {
 
   add(data: Product): Promise<Product> {
     const url = '/products'
-    return axiosClient.post(url, data)
+    const token = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+    return axiosClient.post(url, data, token)
   },
 
-  update(data: Partial<Product>): Promise<Product> {
+  update(data: Product): Promise<Product> {
     const url = `/products/${data.id}`
-    return axiosClient.patch(url, data)
+    const token = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+    return axiosClient.put(url, data, token)
   },
 
   remove(id: string): Promise<Product> {
     const url = `/products/${id}`
-    return axiosClient.delete(url)
+    const token = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+    return axiosClient.delete(url, token)
   },
 }
 export default productApi
