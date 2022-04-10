@@ -18,11 +18,15 @@ export const LoginPageStyles = styled.div`
     }
   }
 
+  .container {
+    display: flex;
+    margin: auto;
+  }
+
   .content {
-    width: 50%;
     display: flex;
     flex-direction: column;
-    padding: 250px;
+    margin: auto;
 
     &-header {
       font-size: 16px;
@@ -67,6 +71,20 @@ export const LoginPageStyles = styled.div`
         font-size: 16px;
         letter-spacing: 0.15px;
       }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    display: block;
+
+    .banner {
+      width: 100%;
+      & > img {
+        height: 200px;
+        object-fit: cover;
+      }
+    }
+    .container {
+      margin: 30px;
     }
   }
 `
