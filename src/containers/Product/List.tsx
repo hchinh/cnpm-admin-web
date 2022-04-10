@@ -101,6 +101,7 @@ const ProductList: FC = () => {
 
   const handleDeleteProduct = async (id: string) => {
     await productApi.remove(id)
+    setRefetch(!refetch)
   }
 
   const columns = [
