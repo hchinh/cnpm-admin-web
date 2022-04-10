@@ -13,6 +13,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { formatCategoryById, formatPrice } from 'utils/textUtils'
 import CreateProductModal from './Create'
 import EditProductModal from './Edit'
+import ProductFilter from './Filter'
 import ListLayoutStyles from './styles'
 
 const ProductList: FC = () => {
@@ -99,6 +100,10 @@ const ProductList: FC = () => {
     })
   }
 
+  const handleClearFilter = () => {
+    push({ pathname: location.pathname, search: '' })
+  }
+
   const handleDeleteProduct = async (id: string) => {
     await productApi.remove(id)
     setRefetch(!refetch)
@@ -180,8 +185,16 @@ const ProductList: FC = () => {
   return (
     <ListLayoutStyles>
       <div>
-        <CreateButton handleClick={() => setCreateProps({ visible: true })} />
+        <ProductFilter
+          onSubmitFilter={handleFilterChange}
+          onClearFilter={handleClearFilter}
+          categoryList={categoryList}
+        />
+        <div className='flex-center-end'>
+          <CreateButton handleClick={() => setCreateProps({ visible: true })} />
+        </div>
         <Table
+          style={{ marginTop: '10px' }}
           dataSource={productList}
           columns={columns}
           rowKey='id'
