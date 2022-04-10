@@ -2,11 +2,17 @@ import { Image, Pagination } from 'antd'
 import Table, { ColumnsType } from 'antd/lib/table'
 import categoryApi from 'api/categoryApi'
 import productApi from 'api/productApi'
+import CreateButton from 'components/actions/CreateButton'
+import DeleteButton from 'components/actions/DeleteButton'
+import EditButton from 'components/actions/EditButton'
+import GroupActions from 'components/common/GroupActions'
 import { Category, ListParams, ListResponse, PaginationParams, Product } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { formatCategoryById, formatPrice } from 'utils/textUtils'
+import CreateProductModal from './Create'
+import EditProductModal from './Edit'
 import ListLayoutStyles from './styles'
 
 const ProductList: FC = () => {
@@ -21,6 +27,14 @@ const ProductList: FC = () => {
     total: 20,
   })
   const [loading, setLoading] = useState(true)
+  const [createProps, setCreateProps] = useState({
+    visible: false,
+  })
+  const [editProps, setEditProps] = useState({
+    visible: false,
+    id: undefined,
+  })
+  const [refetch, setRefetch] = useState(false)
 
   const queryParams: ListParams = useMemo(() => {
     const params = parse(search)
@@ -44,7 +58,7 @@ const ProductList: FC = () => {
 
       setLoading(false)
     })()
-  }, [queryParams])
+  }, [queryParams, refetch])
 
   useEffect(() => {
     ;(async () => {
@@ -61,8 +75,6 @@ const ProductList: FC = () => {
       }
     })()
   }, [])
-
-  console.log(categoryList)
 
   const handlePageChange = (page: number) => {
     const filters = {
@@ -85,6 +97,10 @@ const ProductList: FC = () => {
       pathname: location.pathname,
       search: stringify(filters),
     })
+  }
+
+  const handleDeleteProduct = async (id: string) => {
+    await productApi.remove(id)
   }
 
   const columns = [
@@ -139,11 +155,31 @@ const ProductList: FC = () => {
       dataIndex: 'unitInStock',
       key: 'unitInStock',
     },
+    {
+      fixed: 'right',
+      width: 120,
+      dataIndex: 'id',
+      key: 'id',
+      render: (data) => (
+        <GroupActions>
+          <EditButton
+            handleClick={() =>
+              setEditProps({
+                visible: true,
+                id: data,
+              })
+            }
+          />
+          <DeleteButton customTitle='Product' deleteItem={() => handleDeleteProduct(data)} />
+        </GroupActions>
+      ),
+    },
   ] as ColumnsType<Product>
 
   return (
     <ListLayoutStyles>
       <div>
+        <CreateButton handleClick={() => setCreateProps({ visible: true })} />
         <Table
           dataSource={productList}
           columns={columns}
@@ -161,6 +197,23 @@ const ProductList: FC = () => {
             defaultPageSize={20}
           />
         </div>
+        <CreateProductModal
+          visible={createProps.visible}
+          closeModal={() => setCreateProps({ visible: false })}
+        />
+        <EditProductModal
+          id={editProps.id}
+          resource={productList}
+          extraResource={categoryList}
+          visible={editProps.visible}
+          closeModal={() =>
+            setEditProps({
+              ...editProps,
+              visible: false,
+            })
+          }
+          refetch={() => setRefetch(!refetch)}
+        />
       </div>
     </ListLayoutStyles>
   )

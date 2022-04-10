@@ -16,3 +16,13 @@ export const getQueryParamsFromUrl = (searchStr: string) => {
 
   return parsed
 }
+
+export const onSearch = (data?: string | undefined, inputValue?: string | undefined): boolean =>
+  !!inputValue && data?.toLowerCase()?.search(inputValue?.toLowerCase()) !== -1
+
+export const formatterInputNumber = <Type>(value: Type): string =>
+  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+export const parserInputNumber = (value: string | undefined): string => {
+  return value ? value.replace(/\$\s?|(,*)/g, '') : ''
+}
