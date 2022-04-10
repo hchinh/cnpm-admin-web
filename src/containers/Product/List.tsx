@@ -198,6 +198,8 @@ const ProductList: FC = () => {
           />
         </div>
         <CreateProductModal
+          refetch={() => setRefetch(!refetch)}
+          extraResource={categoryList}
           visible={createProps.visible}
           closeModal={() => setCreateProps({ visible: false })}
         />
