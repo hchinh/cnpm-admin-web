@@ -41,19 +41,19 @@ const CreateProductModal: FC<Props> = ({
   }
 
   return (
-    <Form form={form} layout='vertical'>
-      <FormContextCustom.Provider value={{ form }}>
-        <DrawerCustom
-          title={title}
-          onClose={closeModal}
-          visible={visible}
-          onOk={onOk}
-          okButtonProps={{ loading: loading }}
-        >
+    <DrawerCustom
+      title={title}
+      onClose={closeModal}
+      visible={visible}
+      onOk={onOk}
+      okButtonProps={{ loading: loading }}
+    >
+      <Form form={form} layout='vertical'>
+        <FormContextCustom.Provider value={{ form }}>
           <ProductForm extraItem={extraResource} />
-        </DrawerCustom>
-      </FormContextCustom.Provider>
-    </Form>
+        </FormContextCustom.Provider>
+      </Form>
+    </DrawerCustom>
   )
 }
 

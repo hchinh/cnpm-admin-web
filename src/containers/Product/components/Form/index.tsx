@@ -1,6 +1,8 @@
 import { Col, Form, Input, InputNumber, Row, Select } from 'antd'
-import { Category } from 'interfaces'
-import { FC } from 'react'
+import brandApi from 'api/brandApi'
+import FormUploadImage from 'components/common/FormUploadImage'
+import { Brand, Category } from 'interfaces'
+import { FC, useEffect, useState } from 'react'
 import { formatterInputNumber, parserInputNumber } from 'utils/tools'
 
 interface Props {
@@ -12,8 +14,26 @@ const { Option } = Select
 const { TextArea } = Input
 
 const ProductForm: FC<Props> = ({ item, extraItem }) => {
+  const [brandList, setBrandList] = useState<Brand[]>()
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const brands = await brandApi.getAll()
+        setBrandList(
+          brands.map((brand) => ({
+            id: brand.id,
+            name: brand.name,
+          }))
+        )
+      } catch (error) {
+        console.log('Failed to fetch brand list: ', error)
+      }
+    })()
+  }, [])
+
   return (
-    <Row gutter={16}>
+    <Row gutter={32}>
       <Col span={12}>
         <Form.Item
           name='name'
@@ -40,7 +60,13 @@ const ProductForm: FC<Props> = ({ item, extraItem }) => {
       </Col>
       <Col span={12}>
         <Form.Item name='brand' label='Brand'>
-          <Input placeholder='Brand...' />
+          <Select placeholder='Brand'>
+            {brandList?.map((item: Brand) => (
+              <Option key={item?.id} value={item?.name}>
+                {item?.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
       </Col>
       <Col span={12}>
@@ -62,7 +88,11 @@ const ProductForm: FC<Props> = ({ item, extraItem }) => {
           label='Price'
           rules={[{ required: true, message: 'Please enter price' }]}
         >
-          <InputNumber placeholder='Please enter price' />
+          <InputNumber
+            placeholder='Please enter price'
+            formatter={formatterInputNumber}
+            parser={parserInputNumber}
+          />
         </Form.Item>
       </Col>
       <Col span={24}>
@@ -72,6 +102,11 @@ const ProductForm: FC<Props> = ({ item, extraItem }) => {
           rules={[{ required: true, message: 'Please enter description' }]}
         >
           <TextArea rows={7} placeholder='Enter description ...' />
+        </Form.Item>
+      </Col>
+      <Col span={24}>
+        <Form.Item name='thumbnail' label='Thumbnail'>
+          <FormUploadImage />
         </Form.Item>
       </Col>
     </Row>
