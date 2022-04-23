@@ -61,15 +61,15 @@ const EditProductModal: FC<Props> = ({
 
   return (
     <div>
-      <Form form={form} layout='vertical'>
-        <FormContextCustom.Provider value={{ form, record: product }}>
-          <DrawerCustom
-            title={title}
-            onClose={closeModal}
-            visible={visible}
-            onOk={onOk}
-            okButtonProps={{ loading: loading }}
-          >
+      <DrawerCustom
+        title={title}
+        onClose={closeModal}
+        visible={visible}
+        onOk={onOk}
+        okButtonProps={{ loading: loading }}
+      >
+        <Form form={form} layout='vertical'>
+          <FormContextCustom.Provider value={{ form, record: product }}>
             {isEmpty(product) ? (
               <div className='flex-center'>
                 <Spin />
@@ -77,9 +77,9 @@ const EditProductModal: FC<Props> = ({
             ) : (
               <ProductForm item={product} extraItem={extraResource} />
             )}
-          </DrawerCustom>
-        </FormContextCustom.Provider>
-      </Form>
+          </FormContextCustom.Provider>
+        </Form>
+      </DrawerCustom>
     </div>
   )
 }
