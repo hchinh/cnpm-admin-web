@@ -16,7 +16,6 @@ const MenuItem: FC<MenuItemProps> = ({ disabled, menu, active }) => {
     <Menu.Item
       className={`sidebar-item ${hasActive}`}
       disabled={disabled}
-      key={menu.key}
       title={menu.text}
       onClick={handleClick}
       icon={<menu.IconCPN />}

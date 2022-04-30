@@ -1,18 +1,18 @@
 import { Form } from 'antd'
-import categoryApi from 'api/categoryApi'
+import brandApi from 'api/brandApi'
 import DrawerCustom from 'components/common/DrawerCustom'
 import { FormContextCustom } from 'components/context/FormContextCustom'
 import { DrawerCustomProps } from 'interfaces'
 import { FC, useState } from 'react'
-import CategoryForm from './components/Form'
+import BrandForm from './components/Form'
 
 interface Props extends DrawerCustomProps {
   refetch: () => void
   closeModal: () => void
 }
 
-const CreateCategoryModal: FC<Props> = ({
-  title = 'CREATE NEW CATEGORY',
+const CreateBrandModal: FC<Props> = ({
+  title = 'CREATE NEW BRAND',
   refetch,
   visible,
   closeModal,
@@ -26,7 +26,7 @@ const CreateCategoryModal: FC<Props> = ({
     form
       .validateFields()
       .then(async (values) => {
-        return await categoryApi.add({ ...values })
+        return await brandApi.add({ ...values })
       })
       .then(async () => {
         setLoading(false)
@@ -49,11 +49,11 @@ const CreateCategoryModal: FC<Props> = ({
     >
       <Form form={form} layout='vertical'>
         <FormContextCustom.Provider value={{ form }}>
-          <CategoryForm />
+          <BrandForm />
         </FormContextCustom.Provider>
       </Form>
     </DrawerCustom>
   )
 }
 
-export default CreateCategoryModal
+export default CreateBrandModal
