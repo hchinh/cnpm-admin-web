@@ -1,4 +1,4 @@
-import { AppstoreOutlined, BarsOutlined, SkinOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, BarsOutlined, RedditOutlined, SkinOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -37,6 +37,12 @@ const SideBar: FC = () => {
       text: 'Categories',
       IconCPN: BarsOutlined,
       url: '/categories',
+    },
+    {
+      key: 'brands',
+      text: 'Brands',
+      IconCPN: RedditOutlined,
+      url: '/brands',
     },
   ] as SidebarMenuItemProps[]
 

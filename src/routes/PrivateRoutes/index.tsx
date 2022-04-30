@@ -1,3 +1,4 @@
+import BrandList from 'containers/Brand/List'
 import CategoryList from 'containers/Category/List'
 import ProductList from 'containers/Product/List'
 import PrivateLayout from 'layouts/PrivateLayout'
@@ -24,6 +25,12 @@ const routes: TPrivateRoutes = [
     Component: CategoryList,
     exact: true,
     title: 'Categories',
+  },
+  {
+    path: '/brands',
+    Component: BrandList,
+    exact: true,
+    title: 'Brands',
   },
 ]
 
