@@ -29,10 +29,12 @@ const PrivateLayoutWrapper = styled.div`
   }
 
   .logo {
-    height: 60px;
+    height: 64px;
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
+    font-weight: bold;
     img {
       height: 40px;
       width: auto;

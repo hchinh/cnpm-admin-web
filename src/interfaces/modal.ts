@@ -15,7 +15,7 @@ export interface DrawerContentProps {
 export interface DrawerCustomProps
   extends Omit<DrawerProps, 'onClose' | 'title'>,
     DrawerContentProps {
-  id?: string
+  id?: number
   resource?: any
   extraResource?: any
 }

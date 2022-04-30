@@ -1,3 +1,4 @@
+import CategoryList from 'containers/Category/List'
 import ProductList from 'containers/Product/List'
 import PrivateLayout from 'layouts/PrivateLayout'
 import { flatMap, map } from 'lodash'
@@ -20,7 +21,7 @@ const routes: TPrivateRoutes = [
   },
   {
     path: '/categories',
-    Component: () => <div>Categories</div>,
+    Component: CategoryList,
     exact: true,
     title: 'Categories',
   },
