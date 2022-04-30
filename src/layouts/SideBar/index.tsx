@@ -1,4 +1,4 @@
-import { AppstoreOutlined, BarsOutlined, ShopOutlined, SkinOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, BarsOutlined, SkinOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 import { FC } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -45,9 +45,7 @@ const SideBar: FC = () => {
   return (
     <SideBarStyles>
       <Sider className='sidebar' width={SIDEBAR_WIDTH} theme='light'>
-        <div className='logo'>
-          <ShopOutlined />
-        </div>
+        <div className='logo'>LOGO</div>
         <Menu mode='inline' selectedKeys={[url || 'home']} defaultSelectedKeys={[url || 'home']}>
           {sidebarMenu.map((menu, index) => (
             <MenuItem key={menu.key} menu={menu} active={index === activeItem} />

@@ -1,10 +1,10 @@
-import { Category } from 'interfaces'
+import { Category, ListParams } from 'interfaces'
 import axiosClient from './axiosClient'
 
 const categoryApi = {
-  getAll(): Promise<Category[]> {
+  getAll(params?: ListParams): Promise<Category[]> {
     const url = '/categories'
-    return axiosClient.get(url)
+    return axiosClient.get(url, { params })
   },
 
   getById(id: number): Promise<Category> {

@@ -1,5 +1,5 @@
 export interface Product {
-  id?: number
+  id: number
   createdDate?: string
   modifiedDate?: string
   createdBy?: string
