@@ -1,5 +1,6 @@
 import BrandList from 'containers/Brand/List'
 import CategoryList from 'containers/Category/List'
+import CustomerList from 'containers/Customer/List'
 import ProductList from 'containers/Product/List'
 import PrivateLayout from 'layouts/PrivateLayout'
 import { flatMap, map } from 'lodash'
@@ -31,6 +32,12 @@ const routes: TPrivateRoutes = [
     Component: BrandList,
     exact: true,
     title: 'Brands',
+  },
+  {
+    path: '/customers',
+    Component: CustomerList,
+    exact: true,
+    title: 'Customers',
   },
 ]
 
