@@ -96,12 +96,12 @@ const CategoryList: FC = () => {
     {
       title: 'Name',
       dataIndex: 'name',
-      width: 200,
+      width: 250,
     },
     {
       title: 'Description',
       dataIndex: 'description',
-      width: 600,
+      width: 550,
     },
     {
       fixed: 'right',

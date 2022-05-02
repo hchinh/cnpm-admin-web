@@ -3,7 +3,7 @@ import { ColumnsType } from 'antd/lib/table'
 import customerApi from 'api/customerApi'
 import DeleteButton from 'components/actions/DeleteButton'
 import GroupActions from 'components/common/GroupActions'
-import { Customer, ListParams, ListResponse, PaginationParams } from 'interfaces'
+import { Customer, Gender, ListParams, ListResponse, PaginationParams } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -94,9 +94,9 @@ const CustomerList: FC = () => {
           src={`data:image/jpeg;base64,${data}`}
           alt='image'
           style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '8px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '6px',
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -106,36 +106,49 @@ const CustomerList: FC = () => {
     {
       title: 'Username',
       dataIndex: 'userName',
+      width: 150,
     },
     {
       title: 'Name',
       dataIndex: 'name',
+      width: 250,
     },
     {
       title: 'Gender',
       dataIndex: 'gender',
+      width: 120,
+      filters: [
+        { text: 'Male', value: Gender.MALE },
+        { text: 'Female', value: Gender.FEMALE },
+        { text: 'Others', value: Gender.OTHERS },
+      ],
+      onFilter: (value, record) => record.gender === value,
       render: (data) => formatGender(data),
     },
     {
       title: 'Phone Number',
       dataIndex: 'phoneNumber',
+      width: 150,
     },
     {
       title: 'Email',
       dataIndex: 'email',
+      width: 250,
     },
     {
       title: 'Address',
       dataIndex: 'address',
+      width: 350,
     },
     {
       title: 'Active Status',
       dataIndex: 'enabled',
+      width: 140,
       render: (data) => formatCustomerStatus(data),
     },
     {
       fixed: 'right',
-      width: 120,
+      width: 60,
       dataIndex: 'id',
       key: 'id',
       render: (data) => (
@@ -157,6 +170,7 @@ const CustomerList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
+          scroll={{ x: 1600 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination

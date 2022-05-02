@@ -102,9 +102,9 @@ const EmployeeList: FC = () => {
           src={`data:image/jpeg;base64,${data}`}
           alt='image'
           style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '8px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '6px',
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -200,7 +200,7 @@ const EmployeeList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
-          scroll={{ x: 1200 }}
+          scroll={{ x: 1700 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination

@@ -120,9 +120,9 @@ const ProductList: FC = () => {
           src={`data:image/jpeg;base64,${data}`}
           alt='image'
           style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '8px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '6px',
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -161,6 +161,7 @@ const ProductList: FC = () => {
       dataIndex: 'unitInStock',
       width: 150,
       key: 'unitInStock',
+      sorter: (a: Product, b: Product) => a.unitInStock - b.unitInStock,
     },
     {
       fixed: 'right',
@@ -201,7 +202,7 @@ const ProductList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
-          scroll={{ x: 1200 }}
+          scroll={{ x: 1500 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination
