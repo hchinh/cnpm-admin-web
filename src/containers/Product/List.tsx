@@ -133,37 +133,38 @@ const ProductList: FC = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: 550,
+      width: 500,
     },
     {
       title: 'Category',
       dataIndex: 'categoryId',
       key: 'categoryId',
-      width: 160,
+      width: 150,
       render: (data) => formatCategoryById(data, categoryList),
     },
     {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
-      width: 200,
+      width: 240,
       sorter: (a: Product, b: Product) => a.price - b.price,
       render: (data) => formatPrice(data),
     },
     {
       title: 'Brand',
       dataIndex: 'brand',
-      width: 120,
+      width: 150,
       key: 'brand',
     },
     {
       title: 'Available',
       dataIndex: 'unitInStock',
+      width: 150,
       key: 'unitInStock',
     },
     {
       fixed: 'right',
-      width: 120,
+      width: 80,
       dataIndex: 'id',
       key: 'id',
       render: (data) => (
@@ -200,6 +201,7 @@ const ProductList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
+          scroll={{ x: 1200 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination
