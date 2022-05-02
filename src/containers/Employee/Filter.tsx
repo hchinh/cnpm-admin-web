@@ -8,7 +8,7 @@ interface Props {
   onClearFilter: () => void
 }
 
-const CustomerFilter: FC<Props> = ({ onSubmitFilter, onClearFilter }) => {
+const EmployeeFilter: FC<Props> = ({ onSubmitFilter, onClearFilter }) => {
   return (
     <RestFilter onSubmitFilter={onSubmitFilter} onClearFilter={onClearFilter}>
       <Row gutter={16}>
@@ -22,4 +22,4 @@ const CustomerFilter: FC<Props> = ({ onSubmitFilter, onClearFilter }) => {
   )
 }
 
-export default CustomerFilter
+export default EmployeeFilter

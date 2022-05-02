@@ -1,5 +1,5 @@
 import { Tag } from 'antd'
-import { Category, Gender } from 'interfaces'
+import { Category, Gender, ROLES } from 'interfaces'
 
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat('vi-VN', {
@@ -10,6 +10,25 @@ export const formatPrice = (price: number) => {
 
 export const formatCategoryById = (categoryId: number, categoryList?: Category[]) => {
   return categoryList?.find((category) => category.id === categoryId)?.name
+}
+
+export const formatRole = (roleCode: string) => {
+  const ROLES_CONST = [
+    {
+      value: ROLES.ADMIN,
+      text: 'Admin',
+      color: 'blue',
+    },
+    {
+      value: ROLES.EMPLOYEE,
+      text: 'Employee',
+      color: 'cyan',
+    },
+  ]
+
+  const role = ROLES_CONST.find((item) => item.value === roleCode)
+
+  return <Tag color={role?.color}>{role?.text}</Tag>
 }
 
 export const formatGender = (genderId: number) => {

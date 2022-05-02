@@ -120,9 +120,9 @@ const ProductList: FC = () => {
           src={`data:image/jpeg;base64,${data}`}
           alt='image'
           style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '8px',
+            width: '60px',
+            height: '60px',
+            borderRadius: '6px',
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -133,37 +133,39 @@ const ProductList: FC = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      width: 550,
+      width: 500,
     },
     {
       title: 'Category',
       dataIndex: 'categoryId',
       key: 'categoryId',
-      width: 160,
+      width: 150,
       render: (data) => formatCategoryById(data, categoryList),
     },
     {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
-      width: 200,
+      width: 240,
       sorter: (a: Product, b: Product) => a.price - b.price,
       render: (data) => formatPrice(data),
     },
     {
       title: 'Brand',
       dataIndex: 'brand',
-      width: 120,
+      width: 150,
       key: 'brand',
     },
     {
       title: 'Available',
       dataIndex: 'unitInStock',
+      width: 150,
       key: 'unitInStock',
+      sorter: (a: Product, b: Product) => a.unitInStock - b.unitInStock,
     },
     {
       fixed: 'right',
-      width: 120,
+      width: 80,
       dataIndex: 'id',
       key: 'id',
       render: (data) => (
@@ -200,6 +202,7 @@ const ProductList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
+          scroll={{ x: 1500 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination

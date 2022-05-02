@@ -1,30 +1,39 @@
-import { Image, Pagination, Table } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
-import customerApi from 'api/customerApi'
+import { Image, Pagination } from 'antd'
+import Table, { ColumnsType } from 'antd/lib/table'
+import employeeApi from 'api/employeeApi'
+import CreateButton from 'components/actions/CreateButton'
 import DeleteButton from 'components/actions/DeleteButton'
+import EditButton from 'components/actions/EditButton'
 import GroupActions from 'components/common/GroupActions'
-import { Customer, Gender, ListParams, ListResponse, PaginationParams } from 'interfaces'
+import { Employee, Gender, ListParams, ListResponse, PaginationParams, ROLES } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { formatCustomerStatus, formatGender } from 'utils/textUtils'
-import CustomerFilter from './Filter'
+import { formatCustomerStatus, formatGender, formatRole } from 'utils/textUtils'
+import CreateEmployeeModal from './Create'
+import EditEmployeeModal from './Edit'
+import EmployeeFilter from './Filter'
 import ListLayoutStyles from './styles'
 
-const CustomerList: FC = () => {
+const EmployeeList: FC = () => {
   const { search } = useLocation()
   const { push, location } = useHistory()
 
-  const [customerList, setCustomerList] = useState<Customer[]>()
+  const [employeeList, setEmployeeList] = useState<Employee[]>()
 
   const [pagination, setPagination] = useState<PaginationParams>({
     page: 0,
     limit: 20,
     total: 20,
   })
-
   const [loading, setLoading] = useState(true)
-
+  const [createProps, setCreateProps] = useState({
+    visible: false,
+  })
+  const [editProps, setEditProps] = useState({
+    visible: false,
+    id: undefined,
+  })
   const [refetch, setRefetch] = useState(false)
 
   const queryParams: ListParams = useMemo(() => {
@@ -40,12 +49,11 @@ const CustomerList: FC = () => {
     ;(async () => {
       setLoading(true)
       try {
-        const { data, pagination }: ListResponse<Customer> = await customerApi.getAll(queryParams)
-        setCustomerList(data)
+        const { data, pagination }: ListResponse<Employee> = await employeeApi.getAll(queryParams)
+        setEmployeeList(data)
         setPagination(pagination)
-        console.log(pagination)
       } catch (error) {
-        console.log('Failed to fetch product list: ', error)
+        console.log('Failed to fetch employee list: ', error)
       }
 
       setLoading(false)
@@ -79,8 +87,8 @@ const CustomerList: FC = () => {
     push({ pathname: location.pathname, search: '' })
   }
 
-  const handleDeleteCustomer = async (id: string) => {
-    await customerApi.remove(id)
+  const handleDeleteEmployee = async (id: string) => {
+    await employeeApi.remove(id)
     setRefetch(!refetch)
   }
 
@@ -147,30 +155,52 @@ const CustomerList: FC = () => {
       render: (data) => formatCustomerStatus(data),
     },
     {
+      title: 'Role',
+      dataIndex: 'roleCode',
+      width: 100,
+      filters: [
+        { text: 'Admin', value: ROLES.ADMIN },
+        { text: 'Employee', value: ROLES.EMPLOYEE },
+      ],
+      onFilter: (value, record) => record.roleCode === value,
+      render: (data) => formatRole(data),
+    },
+    {
       fixed: 'right',
-      width: 60,
+      width: 80,
       dataIndex: 'id',
       key: 'id',
       render: (data) => (
         <GroupActions>
-          <DeleteButton customTitle='Customer' deleteItem={() => handleDeleteCustomer(data)} />
+          <EditButton
+            handleClick={() =>
+              setEditProps({
+                visible: true,
+                id: data,
+              })
+            }
+          />
+          <DeleteButton customTitle='Employee' deleteItem={() => handleDeleteEmployee(data)} />
         </GroupActions>
       ),
     },
-  ] as ColumnsType<Customer>
+  ] as ColumnsType<Employee>
 
   return (
     <ListLayoutStyles>
       <div>
-        <CustomerFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
+        <EmployeeFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
+        <div className='flex-center-end'>
+          <CreateButton handleClick={() => setCreateProps({ visible: true })} />
+        </div>
         <Table
           style={{ marginTop: '10px' }}
-          dataSource={customerList}
+          dataSource={employeeList}
           columns={columns}
           rowKey='id'
           pagination={false}
           loading={loading}
-          scroll={{ x: 1600 }}
+          scroll={{ x: 1700 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination
@@ -182,9 +212,26 @@ const CustomerList: FC = () => {
             defaultPageSize={20}
           />
         </div>
+        <CreateEmployeeModal
+          refetch={() => setRefetch(!refetch)}
+          visible={createProps.visible}
+          closeModal={() => setCreateProps({ visible: false })}
+        />
+        <EditEmployeeModal
+          id={editProps.id}
+          resource={employeeList}
+          visible={editProps.visible}
+          closeModal={() =>
+            setEditProps({
+              ...editProps,
+              visible: false,
+            })
+          }
+          refetch={() => setRefetch(!refetch)}
+        />
       </div>
     </ListLayoutStyles>
   )
 }
 
-export default CustomerList
+export default EmployeeList

@@ -12,6 +12,8 @@ const CategoryFilter: FC<Props> = ({ onSubmitFilter, onClearFilter }) => {
   return (
     <RestFilter onSubmitFilter={onSubmitFilter} onClearFilter={onClearFilter}>
       <Row gutter={16}>
+        <Col lg={8} md={12} xs={24}></Col>
+        <Col lg={8} md={12} xs={24}></Col>
         <Col lg={8} md={12} xs={24}>
           <FormInput />
         </Col>
