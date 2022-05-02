@@ -73,14 +73,15 @@ const CategoryList: FC = () => {
     {
       title: 'Image',
       dataIndex: 'thumbnail',
+      width: 200,
       render: (data: any) => (
         <Image
           src={`data:image/jpeg;base64,${data}`}
           alt='image'
           style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '8px',
+            width: '50px',
+            height: '50px',
+            borderRadius: '6px',
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -90,18 +91,21 @@ const CategoryList: FC = () => {
     {
       title: 'ID',
       dataIndex: 'id',
+      width: 100,
     },
     {
       title: 'Name',
       dataIndex: 'name',
+      width: 200,
     },
     {
       title: 'Description',
       dataIndex: 'description',
+      width: 600,
     },
     {
       fixed: 'right',
-      width: 120,
+      width: 80,
       dataIndex: 'id',
       key: 'id',
       render: (data) => (
@@ -132,6 +136,7 @@ const CategoryList: FC = () => {
           dataSource={categoryList}
           columns={columns}
           loading={loading}
+          scroll={{ x: 1100 }}
         />
         <CreateCategoryModal
           refetch={() => setRefetch(!refetch)}
