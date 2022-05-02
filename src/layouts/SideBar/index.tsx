@@ -3,6 +3,7 @@ import {
   BarsOutlined,
   RedditOutlined,
   SkinOutlined,
+  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
@@ -55,6 +56,12 @@ const SideBar: FC = () => {
       text: 'Customers',
       IconCPN: UserOutlined,
       url: '/customers',
+    },
+    {
+      key: 'employees',
+      text: 'Employees',
+      IconCPN: TeamOutlined,
+      url: '/employees',
     },
   ] as SidebarMenuItemProps[]
 
