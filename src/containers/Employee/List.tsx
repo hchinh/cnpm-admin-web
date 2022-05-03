@@ -99,7 +99,7 @@ const EmployeeList: FC = () => {
       width: 120,
       render: (data: any) => (
         <Image
-          src={`data:image/jpeg;base64,${data}`}
+          src={data ? `data:image/jpeg;base64,${data}` : `no-data.jpeg`}
           alt='image'
           style={{
             width: '60px',
