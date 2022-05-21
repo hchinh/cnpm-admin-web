@@ -1,12 +1,15 @@
 import { Pagination, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import cartApi from 'api/cartApi'
+import NoteButton from 'components/actions/NoteButton'
+import GroupActions from 'components/common/GroupActions'
 import { Cart, ListParams, ListResponse, PaginationParams } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { formatDate, formatPaymentType, formatPrice } from 'utils/textUtils'
+import { calculateTotalItems, formatDate, formatPaymentType, formatPrice } from 'utils/textUtils'
 import StatusSelect from './components/StatusSelect'
+import OrderFilter from './Filter'
 import ListLayoutStyles from './styles'
 
 const OrderList: FC = () => {
@@ -91,11 +94,12 @@ const OrderList: FC = () => {
       title: 'Total Items',
       dataIndex: 'cartItems',
       width: 150,
-      render: (data, record) => record?.cartItems?.length,
+      render: (data) => calculateTotalItems(data),
     },
     {
       title: 'Total Cost',
       dataIndex: 'totalCost',
+      sorter: (a: Cart, b: Cart) => a.totalCost - b.totalCost,
       width: 180,
       render: (data) => formatPrice(data),
     },
@@ -124,12 +128,23 @@ const OrderList: FC = () => {
       width: 150,
       render: (data) => formatDate(data),
     },
+    {
+      fixed: 'right',
+      width: 60,
+      dataIndex: 'id',
+      key: 'id',
+      render: (data, record) => (
+        <GroupActions>
+          <NoteButton title={record?.note} />
+        </GroupActions>
+      ),
+    },
   ] as ColumnsType<Cart>
 
   return (
     <ListLayoutStyles>
       <div>
-        {/* <CustomerFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} /> */}
+        <OrderFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
         <Table
           style={{ marginTop: '10px' }}
           dataSource={orderList}
@@ -137,7 +152,7 @@ const OrderList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
-          scroll={{ x: 1600 }}
+          scroll={{ x: 1500 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination

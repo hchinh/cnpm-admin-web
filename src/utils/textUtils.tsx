@@ -1,6 +1,6 @@
 import { Tag } from 'antd'
 import { ACTIVE_CONST, GENDER_CONST, PAYMENT_TYPES_CONST, ROLES_CONST } from 'configs/localData'
-import { Category } from 'interfaces'
+import { CartItem, Category } from 'interfaces'
 import moment from 'moment'
 
 export const formatPrice = (price: number) => {
@@ -32,6 +32,10 @@ export const formatCustomerStatus = (enabled: number) => {
 export const formatPaymentType = (paymentType: string) => {
   const payType = PAYMENT_TYPES_CONST.find((item) => item.value === paymentType)
   return <Tag color={payType?.color}>{payType?.text}</Tag>
+}
+
+export const calculateTotalItems = (cartItems: CartItem[]) => {
+  return `${cartItems.length} item${cartItems.length > 1 ? 's' : ''}`
 }
 
 export const formatDate = (text?: string) => {

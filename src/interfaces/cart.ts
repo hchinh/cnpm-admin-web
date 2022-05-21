@@ -28,13 +28,13 @@ export interface Cart {
   id: number
   createdDate?: string
   modifiedDate?: string
-  createdBy?: string
+  createdBy: string
   modifiedBy?: string
   note?: string
-  totalCost?: number
+  totalCost: number
   address?: string
-  status?: Status
-  paymentMethod?: PaymentMethod
-  cartItems?: CartItem[]
+  status: Status
+  paymentMethod: PaymentMethod
+  cartItems: CartItem[]
   customerId?: number
 }
