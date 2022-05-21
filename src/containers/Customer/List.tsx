@@ -43,7 +43,6 @@ const CustomerList: FC = () => {
         const { data, pagination }: ListResponse<Customer> = await customerApi.getAll(queryParams)
         setCustomerList(data)
         setPagination(pagination)
-        console.log(pagination)
       } catch (error) {
         console.log('Failed to fetch product list: ', error)
       }

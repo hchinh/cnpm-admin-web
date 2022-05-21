@@ -13,7 +13,7 @@ export enum PaymentMethod {
 }
 
 export interface CartItem {
-  id?: number
+  id: number
   createdDate?: string
   modifiedDate?: string
   createdBy?: string
@@ -25,7 +25,7 @@ export interface CartItem {
 }
 
 export interface Cart {
-  id?: number
+  id: number
   createdDate?: string
   modifiedDate?: string
   createdBy?: string

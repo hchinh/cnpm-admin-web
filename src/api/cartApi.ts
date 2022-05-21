@@ -14,6 +14,16 @@ const cartApi = {
       },
     }
   },
+
+  updateStatus(data: { status: string; userId: string | null }, cartId: number): Promise<Cart> {
+    const url = `/carts/status/${cartId}`
+    const token = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+    return axiosClient.put(url, data, token)
+  },
 }
 
 export default cartApi
