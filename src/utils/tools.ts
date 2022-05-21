@@ -9,7 +9,7 @@ export const getQueryParamsFromUrl = (searchStr: string) => {
       try {
         parsed[key] = JSON.parse(value)
       } catch (error) {
-        // console.log(error, 'error')
+        console.log(error, 'error')
       }
     }
   })

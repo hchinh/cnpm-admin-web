@@ -2,6 +2,7 @@ import {
   AppstoreOutlined,
   BarsOutlined,
   RedditOutlined,
+  ShoppingOutlined,
   SkinOutlined,
   TeamOutlined,
   UserOutlined,
@@ -38,6 +39,12 @@ const SideBar: FC = () => {
       text: 'Products',
       IconCPN: SkinOutlined,
       url: '/products',
+    },
+    {
+      key: 'orders',
+      text: 'Orders',
+      IconCPN: ShoppingOutlined,
+      url: '/carts',
     },
     {
       key: 'categories',
