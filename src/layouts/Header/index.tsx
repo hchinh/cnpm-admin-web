@@ -20,7 +20,7 @@ const Header: FC = () => {
 
   return (
     <HeaderWrapper className='header'>
-      <div className='leftHeader'>Left</div>
+      <div className='leftHeader'></div>
       <div className='rightHeader'>
         <UserInfo />
       </div>
