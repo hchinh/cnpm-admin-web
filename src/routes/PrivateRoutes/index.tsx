@@ -18,6 +18,12 @@ const routes: TPrivateRoutes = [
     title: 'Dashboard',
   },
   {
+    path: '/profile',
+    Component: () => <div>Profile</div>,
+    exact: true,
+    title: 'Profile',
+  },
+  {
     path: '/products',
     Component: ProductList,
     exact: true,

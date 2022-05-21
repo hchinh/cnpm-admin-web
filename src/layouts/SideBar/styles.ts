@@ -51,6 +51,18 @@ const SideBarStyles = styled.div`
         margin-left: 12px;
       }
     }
+
+    .logo {
+      padding-left: 0px;
+      justify-content: center;
+      object-fit: contain;
+
+      & > img {
+        cursor: pointer;
+        width: 64px;
+        height: 64px;
+      }
+    }
   }
 `
 

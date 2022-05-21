@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 import { FC } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { SIDEBAR_WIDTH } from 'theme/constants'
 import { SidebarMenuItemProps } from './interface'
 import MenuItem from './MenuItem'
@@ -24,6 +24,7 @@ const { Sider } = Layout
 
 const SideBar: FC = () => {
   const { pathname } = useLocation()
+  const { push } = useHistory()
 
   const url = getCurrentTab(pathname)
 
@@ -74,10 +75,16 @@ const SideBar: FC = () => {
 
   const activeItem = sidebarMenu.findIndex((item) => item.url === pathname)
 
+  const handleClick = () => {
+    push('/')
+  }
+
   return (
     <SideBarStyles>
       <Sider className='sidebar' width={SIDEBAR_WIDTH} theme='light'>
-        <div className='logo'>LOGO</div>
+        <div className='logo' onClick={handleClick}>
+          <img src='logo.png' alt='logo' />
+        </div>
         <Menu mode='inline' selectedKeys={[url || 'home']} defaultSelectedKeys={[url || 'home']}>
           {sidebarMenu.map((menu, index) => (
             <MenuItem key={menu.key} menu={menu} active={index === activeItem} />
