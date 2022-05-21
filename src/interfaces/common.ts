@@ -9,7 +9,7 @@ export interface AuthResponse {
   email: string
   token: string
   type: 'Bearer'
-  role: ROLES
+  refreshToken: string
 }
 
 export interface PaginationParams {

@@ -21,7 +21,7 @@ const PrivateLayout: FC<Props> = ({ children }) => {
             <div className='content' id='status'>
               {children}
             </div>
-            <Footer className='footer'>Footer</Footer>
+            <Footer className='footer'>BKDN - 18T1 - 2018/2023</Footer>
           </Content>
         </Layout>
       </Layout>

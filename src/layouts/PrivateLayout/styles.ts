@@ -88,7 +88,8 @@ const PrivateLayoutWrapper = styled.div`
     background: ${({ theme }) => theme.background.content};
     color: ${({ theme }) => theme.text.primary};
     text-align: center;
-    @media only screen and (max-width: 430px) {
+    height: 64px;
+    @media only screen and (max-width: 630px) {
       display: none;
     }
   }
