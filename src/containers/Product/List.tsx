@@ -6,6 +6,7 @@ import CreateButton from 'components/actions/CreateButton'
 import DeleteButton from 'components/actions/DeleteButton'
 import EditButton from 'components/actions/EditButton'
 import GroupActions from 'components/common/GroupActions'
+import PageTitle from 'components/common/PageTitle'
 import { Category, ListParams, ListResponse, PaginationParams, Product } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
@@ -187,6 +188,7 @@ const ProductList: FC = () => {
   return (
     <ListLayoutStyles>
       <div>
+        <PageTitle title='Products' />
         <ProductFilter
           onSubmitFilter={handleFilterChange}
           onClearFilter={handleClearFilter}

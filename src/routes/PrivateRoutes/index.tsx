@@ -54,9 +54,18 @@ const routes: TPrivateRoutes = [
     title: 'Employees',
   },
   {
-    path: '/carts',
-    Component: OrderList,
+    path: '/orders',
     exact: true,
+    routes: [
+      {
+        path: '/',
+        Component: OrderList,
+      },
+      {
+        path: '/:id/show',
+        Component: () => <div>Show</div>,
+      },
+    ],
     title: 'Orders',
   },
 ]
