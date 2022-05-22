@@ -3,6 +3,7 @@ import CategoryList from 'containers/Category/List'
 import CustomerList from 'containers/Customer/List'
 import EmployeeList from 'containers/Employee/List'
 import OrderList from 'containers/Order/List'
+import OrderDetail from 'containers/Order/Show'
 import ProductList from 'containers/Product/List'
 import PrivateLayout from 'layouts/PrivateLayout'
 import { flatMap, map } from 'lodash'
@@ -63,7 +64,7 @@ const routes: TPrivateRoutes = [
       },
       {
         path: '/:id/show',
-        Component: () => <div>Show</div>,
+        Component: OrderDetail,
       },
     ],
     title: 'Orders',

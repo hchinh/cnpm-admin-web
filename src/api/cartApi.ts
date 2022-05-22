@@ -15,6 +15,11 @@ const cartApi = {
     }
   },
 
+  getById(id: number): Promise<Cart> {
+    const url = `/carts/${id}`
+    return axiosClient.get(url)
+  },
+
   updateStatus(data: { status: string; userId: string | null }, cartId: number): Promise<Cart> {
     const url = `/carts/status/${cartId}`
     const token = {

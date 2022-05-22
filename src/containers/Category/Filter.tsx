@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd'
-import RestFilter from 'components/RestFilter'
+import RestFilter from 'components/RestLayout/RestFilter'
 import { FC } from 'react'
 import FormInput from './components/Filter/FormInput'
 

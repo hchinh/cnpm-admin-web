@@ -1,6 +1,6 @@
 import { Col, Form, Row, Select, Tooltip } from 'antd'
 import brandApi from 'api/brandApi'
-import RestFilter from 'components/RestFilter'
+import RestFilter from 'components/RestLayout/RestFilter'
 import { Brand, Category } from 'interfaces'
 import { FC, useEffect, useState } from 'react'
 import FormInput from './components/Filter/FormInput'

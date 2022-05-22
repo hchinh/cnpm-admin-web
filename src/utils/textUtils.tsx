@@ -1,5 +1,11 @@
 import { Tag } from 'antd'
-import { ACTIVE_CONST, GENDER_CONST, PAYMENT_TYPES_CONST, ROLES_CONST } from 'configs/localData'
+import {
+  ACTIVE_CONST,
+  GENDER_CONST,
+  ORDER_STATUS,
+  PAYMENT_TYPES_CONST,
+  ROLES_CONST,
+} from 'configs/localData'
 import { CartItem, Category } from 'interfaces'
 import moment from 'moment'
 
@@ -46,4 +52,10 @@ export const formatDate = (text?: string) => {
   return dateTime.isSame(moment(), 'year')
     ? dateTime.format(`MMM D, ${formatTime}`)
     : dateTime.format(`MMM D YYYY, ${formatTime}`)
+}
+
+export const formatOrderStatus = (data?: string) => {
+  if (!data) return null
+  const restItem = ORDER_STATUS.find((item) => item.value === data)
+  return <Tag color={restItem?.color}>{restItem?.text ? restItem.text : data}</Tag>
 }

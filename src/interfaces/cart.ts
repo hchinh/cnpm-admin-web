@@ -22,6 +22,8 @@ export interface CartItem {
   salePrice?: number
   cartId?: number
   productId?: number
+  productName?: string
+  productThumbnail?: string
 }
 
 export interface Cart {
@@ -36,5 +38,5 @@ export interface Cart {
   status: Status
   paymentMethod: PaymentMethod
   cartItems: CartItem[]
-  customerId?: number
+  customerId: number
 }
