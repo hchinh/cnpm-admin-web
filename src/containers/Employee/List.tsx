@@ -5,6 +5,7 @@ import CreateButton from 'components/actions/CreateButton'
 import DeleteButton from 'components/actions/DeleteButton'
 import EditButton from 'components/actions/EditButton'
 import GroupActions from 'components/common/GroupActions'
+import PageTitle from 'components/common/PageTitle'
 import { Employee, Gender, ListParams, ListResponse, PaginationParams, ROLES } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
@@ -189,6 +190,7 @@ const EmployeeList: FC = () => {
   return (
     <ListLayoutStyles>
       <div>
+        <PageTitle title='Employees' />
         <EmployeeFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
         <div className='flex-center-end'>
           <CreateButton handleClick={() => setCreateProps({ visible: true })} />

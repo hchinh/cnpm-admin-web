@@ -15,6 +15,11 @@ const customerApi = {
     }
   },
 
+  getById(id: number): Promise<Customer> {
+    const url = `/customers/${id}`
+    return axiosClient.get(url)
+  },
+
   remove(id: string): Promise<Customer> {
     const url = `/customers/${id}`
     const token = {

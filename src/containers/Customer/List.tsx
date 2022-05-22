@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/lib/table'
 import customerApi from 'api/customerApi'
 import DeleteButton from 'components/actions/DeleteButton'
 import GroupActions from 'components/common/GroupActions'
+import PageTitle from 'components/common/PageTitle'
 import { Customer, Gender, ListParams, ListResponse, PaginationParams } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
@@ -161,6 +162,7 @@ const CustomerList: FC = () => {
   return (
     <ListLayoutStyles>
       <div>
+        <PageTitle title='Customers' />
         <CustomerFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
         <Table
           style={{ marginTop: '10px' }}

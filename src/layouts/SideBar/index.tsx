@@ -45,7 +45,7 @@ const SideBar: FC = () => {
       key: 'orders',
       text: 'Orders',
       IconCPN: ShoppingOutlined,
-      url: '/carts',
+      url: '/orders',
     },
     {
       key: 'categories',

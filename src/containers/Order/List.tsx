@@ -2,7 +2,9 @@ import { Pagination, Table } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import cartApi from 'api/cartApi'
 import NoteButton from 'components/actions/NoteButton'
+import ViewButton from 'components/actions/ViewButton'
 import GroupActions from 'components/common/GroupActions'
+import PageTitle from 'components/common/PageTitle'
 import { Cart, ListParams, ListResponse, PaginationParams } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
@@ -130,12 +132,13 @@ const OrderList: FC = () => {
     },
     {
       fixed: 'right',
-      width: 60,
+      width: 80,
       dataIndex: 'id',
       key: 'id',
-      render: (data, record) => (
+      render: (id, record) => (
         <GroupActions>
           <NoteButton title={record?.note} />
+          <ViewButton id={id} />
         </GroupActions>
       ),
     },
@@ -144,6 +147,7 @@ const OrderList: FC = () => {
   return (
     <ListLayoutStyles>
       <div>
+        <PageTitle title='Orders' />
         <OrderFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
         <Table
           style={{ marginTop: '10px' }}
@@ -152,7 +156,7 @@ const OrderList: FC = () => {
           rowKey='id'
           pagination={false}
           loading={loading}
-          scroll={{ x: 1500 }}
+          scroll={{ x: 1600 }}
         />
         <div className='list-layout__pagination-bottom'>
           <Pagination

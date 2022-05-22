@@ -5,6 +5,7 @@ import CreateButton from 'components/actions/CreateButton'
 import DeleteButton from 'components/actions/DeleteButton'
 import EditButton from 'components/actions/EditButton'
 import GroupActions from 'components/common/GroupActions'
+import PageTitle from 'components/common/PageTitle'
 import { Category, ListParams } from 'interfaces'
 import { parse, stringify } from 'query-string'
 import { FC, useEffect, useMemo, useState } from 'react'
@@ -127,6 +128,7 @@ const CategoryList: FC = () => {
   return (
     <ListLayoutStyles>
       <div>
+        <PageTitle title='Categories' />
         <CategoryFilter onSubmitFilter={handleFilterChange} onClearFilter={handleClearFilter} />
         <div className='flex-center-end'>
           <CreateButton handleClick={() => setCreateProps({ visible: true })} />

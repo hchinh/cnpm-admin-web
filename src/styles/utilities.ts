@@ -240,6 +240,10 @@ export const CLASS_UTILITY = `
     padding: 0;
   }
 
+  .p-12 {
+    padding: 12px;
+  }
+
   .p-13 {
     padding: 13px;
   }
