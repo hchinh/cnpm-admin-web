@@ -39,4 +39,5 @@ export interface Cart {
   paymentMethod: PaymentMethod
   cartItems: CartItem[]
   customerId: number
+  customerName: string
 }

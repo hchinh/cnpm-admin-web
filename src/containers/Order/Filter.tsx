@@ -20,7 +20,7 @@ const OrderFilter: FC<Props> = ({ onSubmitFilter, onClearFilter }) => {
         </Col>
         <Col lg={8} md={12} xs={24}>
           <Tooltip title='Payment Type'>
-            <Form.Item name='paymentMethod'>
+            <Form.Item name='paymentType'>
               <Select placeholder='Payment Type'>
                 {PAYMENT_TYPES_CONST.map((item) => (
                   <Option key={item.value} value={item.value}>
