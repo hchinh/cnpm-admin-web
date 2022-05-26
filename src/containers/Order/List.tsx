@@ -89,7 +89,7 @@ const OrderList: FC = () => {
     },
     {
       title: 'Customer',
-      dataIndex: 'createdBy',
+      dataIndex: 'customerName',
       width: 200,
     },
     {

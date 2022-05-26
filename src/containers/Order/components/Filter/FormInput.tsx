@@ -7,7 +7,7 @@ const FormInput: FC = () => {
 
   return (
     <Tooltip title='Customer Name'>
-      <Form.Item name='createdBy'>
+      <Form.Item name='customerName'>
         <Input
           placeholder='Customer Name'
           onPressEnter={allowPressEnter ? handleSubmit : undefined}
