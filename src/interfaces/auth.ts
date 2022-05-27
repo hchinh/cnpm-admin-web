@@ -12,3 +12,9 @@ export interface LogoutPayload {
   token: string
   userId: number
 }
+
+export interface ChangePasswordPayload {
+  email: string
+  oldPassword: string
+  password: string
+}

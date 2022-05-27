@@ -1,3 +1,4 @@
+import { ChangePasswordPayload } from './../interfaces/auth'
 import { AuthResponse, LoginPayload, LogoutPayload, RefreshTokenPayload } from 'interfaces'
 import axiosClient from './axiosClient'
 
@@ -12,6 +13,10 @@ const authApi = {
 
   checkToken(payload: RefreshTokenPayload): Promise<AuthResponse> {
     return axiosClient.post('/admin/auth/refreshtoken', payload)
+  },
+
+  changePassword(payload: ChangePasswordPayload) {
+    return axiosClient.post('/password/edit', payload)
   },
 }
 
