@@ -8,7 +8,10 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
-import { FC } from 'react'
+import employeeApi from 'api/employeeApi'
+import CheckPermissions from 'components/common/CheckPermissions'
+import { Employee, ROLES } from 'interfaces'
+import { FC, useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { SIDEBAR_WIDTH } from 'theme/constants'
 import { SidebarMenuItemProps } from './interface'
@@ -25,6 +28,19 @@ const { Sider } = Layout
 const SideBar: FC = () => {
   const { pathname } = useLocation()
   const { push } = useHistory()
+  const [roleCode, setRoleCode] = useState<ROLES>()
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const id = Number(localStorage.getItem('id'))
+        const data: Employee = await employeeApi.getById(id)
+        setRoleCode(data.roleCode)
+      } catch (error) {
+        console.log('Failed to fetch profile: ', error)
+      }
+    })()
+  }, [])
 
   const url = getCurrentTab(pathname)
 
@@ -70,6 +86,7 @@ const SideBar: FC = () => {
       text: 'Employees',
       IconCPN: TeamOutlined,
       url: '/employees',
+      disabledPermission: roleCode === ROLES.EMPLOYEE,
     },
   ] as SidebarMenuItemProps[]
 
@@ -87,7 +104,12 @@ const SideBar: FC = () => {
         </div>
         <Menu mode='inline' selectedKeys={[url || 'home']} defaultSelectedKeys={[url || 'home']}>
           {sidebarMenu.map((menu, index) => (
-            <MenuItem key={menu.key} menu={menu} active={index === activeItem} />
+            <CheckPermissions
+              key={menu.key}
+              disabled={menu.disabledPermission ? menu.disabledPermission : false}
+            >
+              <MenuItem menu={menu} active={index === activeItem} />
+            </CheckPermissions>
           ))}
         </Menu>
       </Sider>
