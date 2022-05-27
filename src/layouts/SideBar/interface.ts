@@ -5,6 +5,7 @@ export interface SidebarMenuItemProps {
   IconCPN: FC
   key: string
   text: string
+  disabledPermission?: boolean
 }
 
 export interface MenuItemProps {

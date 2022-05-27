@@ -1,6 +1,7 @@
 import { UserOutlined } from '@ant-design/icons'
 import { Avatar, Button, Col, Row } from 'antd'
 import employeeApi from 'api/employeeApi'
+import { GENDER_CONST } from 'configs/localData'
 import { Employee, ModalForwardRefHandle } from 'interfaces'
 import { useEffect, useRef, useState } from 'react'
 import { formatGender, formatRole } from 'utils/textUtils'
@@ -71,7 +72,10 @@ const Profile = () => {
               <b className='fs-16'>Gender</b>
             </Col>
             <Col xl={18} className='fs-16'>
-              {profile?.gender ? formatGender(profile.gender) : 'N/A'}
+              {profile?.gender !== undefined &&
+              GENDER_CONST.map((gender) => gender.value).includes(profile?.gender)
+                ? formatGender(profile?.gender)
+                : 'N/A'}
             </Col>
           </Row>
 
