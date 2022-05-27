@@ -5,6 +5,7 @@ import EmployeeList from 'containers/Employee/List'
 import OrderList from 'containers/Order/List'
 import OrderDetail from 'containers/Order/Show'
 import ProductList from 'containers/Product/List'
+import Profile from 'containers/Profile/Show'
 import PrivateLayout from 'layouts/PrivateLayout'
 import { flatMap, map } from 'lodash'
 import { Redirect, Switch } from 'react-router-dom'
@@ -20,7 +21,7 @@ const routes: TPrivateRoutes = [
   },
   {
     path: '/profile',
-    Component: () => <div>Profile</div>,
+    Component: Profile,
     exact: true,
     title: 'Profile',
   },
