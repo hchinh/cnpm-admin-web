@@ -19,3 +19,7 @@ export interface DrawerCustomProps
   resource?: any
   extraResource?: any
 }
+
+export interface ModalForwardRefHandle {
+  open: (data?: any) => void
+}

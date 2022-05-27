@@ -2,18 +2,21 @@ import styled from 'styled-components'
 
 export const ProfileStyles = styled.div`
   .left-column {
-    width: 32%;
+    width: 30%;
 
-    & > div > span {
-      width: 360px;
-      height: 360px;
+    .avatar-wrapper {
+      width: 85%;
+      & > span {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
   .right-column {
     width: 55%;
     margin-top: 32px;
-    margin-left: 15px;
+    margin-left: 20px;
   }
 
   .name-text {
@@ -23,5 +26,9 @@ export const ProfileStyles = styled.div`
 
   .username-text {
     margin-bottom: 32px;
+  }
+
+  .change-password-btn {
+    margin-top: 38px;
   }
 `

@@ -1,13 +1,16 @@
 import { UserOutlined } from '@ant-design/icons'
-import { Avatar, Col, Row } from 'antd'
+import { Avatar, Button, Col, Row } from 'antd'
 import employeeApi from 'api/employeeApi'
-import { Employee } from 'interfaces'
-import { useEffect, useState } from 'react'
+import { Employee, ModalForwardRefHandle } from 'interfaces'
+import { useEffect, useRef, useState } from 'react'
 import { formatGender, formatRole } from 'utils/textUtils'
+import ChangePasswordModal from './components/ChangePasswordModal'
 import { ProfileStyles } from './styles'
 
 const Profile = () => {
   const [profile, setProfile] = useState<Employee>()
+
+  const changePasswordModalRef = useRef<ModalForwardRefHandle>(null)
 
   useEffect(() => {
     ;(async () => {
@@ -21,10 +24,14 @@ const Profile = () => {
     })()
   }, [])
 
+  const handleShowModal = () => {
+    changePasswordModalRef.current && changePasswordModalRef.current.open()
+  }
+
   return (
     <ProfileStyles className='box-wrapper d-flex'>
       <div className='left-column flex-center'>
-        <div>
+        <div className='avatar-wrapper'>
           <Avatar
             src={
               profile?.profilePicture
@@ -87,6 +94,12 @@ const Profile = () => {
           </Row>
         </div>
       </div>
+      <div className='change-password-btn'>
+        <Button type='primary' onClick={handleShowModal}>
+          Change Password
+        </Button>
+      </div>
+      <ChangePasswordModal ref={changePasswordModalRef} />
     </ProfileStyles>
   )
 }
