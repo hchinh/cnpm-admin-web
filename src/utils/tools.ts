@@ -26,3 +26,11 @@ export const formatterInputNumber = <Type>(value: Type): string =>
 export const parserInputNumber = (value: string | undefined): string => {
   return value ? value.replace(/\$\s?|(,*)/g, '') : ''
 }
+
+export const getBase64StringFromDataURL = (dataURL: string | null) => {
+  if (dataURL) {
+    return dataURL.replace('data:', '').replace(/^.+,/, '')
+  }
+
+  return null
+}

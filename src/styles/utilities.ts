@@ -262,6 +262,12 @@ export const CLASS_UTILITY = `
   .fw-600 {
     font-weight: 600;
   }
+  .fw-700 {
+    font-weight: 700;
+  }
+  .fw-700 {
+    font-weight: 700;
+  }
 
   /*----------Font size------*/
   .fs-22 {
