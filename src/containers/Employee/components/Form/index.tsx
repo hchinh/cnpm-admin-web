@@ -143,9 +143,7 @@ const EmployeeForm: FC<Props> = ({ isEdit }) => {
       </Col>
 
       <Col span={24}>
-        <Form.Item name='profilePicture' label='Avatar'>
-          <FormUploadImage />
-        </Form.Item>
+        <FormUploadImage name='profilePicture' label='Avatar' />
       </Col>
     </Row>
   )

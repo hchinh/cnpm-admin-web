@@ -105,9 +105,7 @@ const ProductForm: FC<Props> = ({ item, extraItem }) => {
         </Form.Item>
       </Col>
       <Col span={24}>
-        <Form.Item name='thumbnail' label='Thumbnail'>
-          <FormUploadImage />
-        </Form.Item>
+        <FormUploadImage name='thumbnail' label='Thumbnail' />
       </Col>
     </Row>
   )
