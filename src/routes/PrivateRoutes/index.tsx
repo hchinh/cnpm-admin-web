@@ -1,6 +1,7 @@
 import BrandList from 'containers/Brand/List'
 import CategoryList from 'containers/Category/List'
 import CustomerList from 'containers/Customer/List'
+import DashboardPage from 'containers/Dashboard'
 import EmployeeList from 'containers/Employee/List'
 import OrderList from 'containers/Order/List'
 import OrderDetail from 'containers/Order/Show'
@@ -15,7 +16,7 @@ import PrivateRoute from './PrivateRoute'
 const routes: TPrivateRoutes = [
   {
     path: '/',
-    Component: () => <div>Dashboard</div>,
+    Component: DashboardPage,
     exact: true,
     title: 'Dashboard',
   },
