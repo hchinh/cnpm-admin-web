@@ -1,4 +1,5 @@
 import { Col, Row } from 'antd'
+import CategoryStatistics from './Chart'
 import TotalCustomer from './components/TotalCustomer'
 import TotalOrders from './components/TotalOrders'
 import TotalRevenue from './components/TotalRevenue'
@@ -29,12 +30,14 @@ const DashboardPage = () => {
           </Row>
         </Col>
         <Col span={12}>
-          <LatestOrders />
+          <CategoryStatistics />
         </Col>
       </Row>
-      <Row gutter={20} className='mt-20'>
-        <Col span={16}>Chart</Col>
-        <Col span={8}>
+      <Row gutter={[20, 20]} className='mt-20'>
+        <Col span={12}>
+          <LatestOrders />
+        </Col>
+        <Col span={12}>
           <BestSellingProducts />
         </Col>
       </Row>

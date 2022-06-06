@@ -21,6 +21,10 @@ const reportApi = {
   getTopProduct(params?: ReportParams): Promise<any[]> {
     return axiosClient.get('/statistics/product', { params })
   },
+
+  getCategoriesStatistics(year?: string): Promise<any[]> {
+    return axiosClient.get('/statistics/categories', { params: year })
+  },
 }
 
 export default reportApi
