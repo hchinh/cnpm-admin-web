@@ -12,8 +12,12 @@ const TotalSales = ({ timeQuery }: Props) => {
 
   useEffect(() => {
     ;(async () => {
-      const count = await statisticsApi.getTotalSales(timeQuery)
-      setTotalSales(count)
+      try {
+        const count = await statisticsApi.getTotalSales(timeQuery)
+        setTotalSales(count)
+      } catch (error) {
+        console.log('Failed to fetch', error)
+      }
     })()
   }, [timeQuery])
 

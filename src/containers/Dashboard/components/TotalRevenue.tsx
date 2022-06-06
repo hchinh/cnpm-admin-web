@@ -13,8 +13,12 @@ const TotalRevenue = ({ timeQuery }: Props) => {
 
   useEffect(() => {
     ;(async () => {
-      const count = await statisticsApi.getRevenue(timeQuery)
-      setTotalRevenue(count)
+      try {
+        const count = await statisticsApi.getRevenue(timeQuery)
+        setTotalRevenue(count)
+      } catch (error) {
+        console.log('Failed to fetch', error)
+      }
     })()
   }, [timeQuery])
 

@@ -1,4 +1,4 @@
-import { Product, ReportParams } from 'interfaces'
+import { ReportParams } from 'interfaces'
 import axiosClient from './axiosClient'
 
 const reportApi = {
@@ -18,7 +18,7 @@ const reportApi = {
     return axiosClient.get('/customers/count', { params })
   },
 
-  getTopProduct(params?: ReportParams): Promise<Product[]> {
+  getTopProduct(params?: ReportParams): Promise<any[]> {
     return axiosClient.get('/statistics/product', { params })
   },
 }
