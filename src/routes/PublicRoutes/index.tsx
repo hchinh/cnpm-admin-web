@@ -8,11 +8,6 @@ export const PUBLIC_ROUTES = [
     exact: true,
   },
   {
-    path: '/register',
-    component: () => <div />,
-    exact: true,
-  },
-  {
     path: '/forgot-password',
     component: () => <div />,
     exact: true,
