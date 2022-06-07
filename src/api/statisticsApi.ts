@@ -23,7 +23,7 @@ const reportApi = {
   },
 
   getCategoriesStatistics(year?: string): Promise<any[]> {
-    return axiosClient.get('/statistics/categories', { params: year })
+    return axiosClient.get('/statistics/categories/data', { params: year })
   },
 }
 

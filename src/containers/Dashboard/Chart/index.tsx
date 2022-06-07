@@ -4,7 +4,12 @@ import { useEffect, useState } from 'react'
 import Chart from 'react-apexcharts'
 
 const CategoryStatistics = () => {
-  const [statistics, setStatistics] = useState<any[]>()
+  const [statistics, setStatistics] = useState<any[]>([
+    {
+      name: '',
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+  ])
 
   useEffect(() => {
     ;(async () => {
@@ -20,7 +25,6 @@ const CategoryStatistics = () => {
   const chartOptions = {
     series: statistics,
     options: {
-      color: ['#6ab04c', '#2980b9'],
       chart: {
         background: 'transparent',
       },
