@@ -64,7 +64,13 @@ const LatestOrders = () => {
 
   return (
     <ReportCard title='Latest Orders'>
-      <Table columns={columns} dataSource={latestOrderList} pagination={false} loading={loading} />
+      <Table
+        columns={columns}
+        dataSource={latestOrderList}
+        pagination={false}
+        loading={loading}
+        scroll={{ x: 750 }}
+      />
     </ReportCard>
   )
 }

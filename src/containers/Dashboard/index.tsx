@@ -11,7 +11,7 @@ const DashboardPage = () => {
   return (
     <>
       <Row gutter={[20, 20]}>
-        <Col span={10}>
+        <Col span={12}>
           <Row gutter={20}>
             <Col span={12}>
               <TotalCustomer />
@@ -29,7 +29,7 @@ const DashboardPage = () => {
             </Col>
           </Row>
         </Col>
-        <Col span={14}>
+        <Col span={12}>
           <CategoryStatistics />
         </Col>
       </Row>
