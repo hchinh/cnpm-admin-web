@@ -3,8 +3,8 @@ import { unwrapResult } from '@reduxjs/toolkit'
 import { Button, Form, Input, notification, Space } from 'antd'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { LoginPayload } from 'interfaces'
-import React, { FC } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { FC } from 'react'
+import { useHistory } from 'react-router-dom'
 import { authSelector, login } from 'redux/authSlice'
 import { LoginPageStyles } from './styles'
 
@@ -69,11 +69,6 @@ const LoginPage: FC = () => {
                   />
                 </Form.Item>
               </Space>
-            </Form.Item>
-            <Form.Item>
-              <Link className='login-form-forgot' to='/forgot-password'>
-                Forgot password?
-              </Link>
             </Form.Item>
 
             <Form.Item>

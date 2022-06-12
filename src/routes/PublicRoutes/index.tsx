@@ -7,16 +7,6 @@ export const PUBLIC_ROUTES = [
     component: LoginPage,
     exact: true,
   },
-  {
-    path: '/forgot-password',
-    component: () => <div />,
-    exact: true,
-  },
-  {
-    path: '/resetPassword',
-    component: () => <div />,
-    exact: true,
-  },
 ]
 
 const publicRoutes = () => PUBLIC_ROUTES.map((route) => <Route {...route} key={route.path} />)
