@@ -1,4 +1,4 @@
-import { Form } from 'antd'
+import { Form, notification } from 'antd'
 import employeeApi from 'api/employeeApi'
 import DrawerCustom from 'components/common/DrawerCustom'
 import { FormContextCustom } from 'components/context/FormContextCustom'
@@ -37,7 +37,8 @@ const CreateEmployeeModal: FC<Props> = ({
         refetch()
       })
       .catch((info) => {
-        console.log('Validate Failed:', info)
+        setLoading(false)
+        notification.error(info.message)
       })
   }
 

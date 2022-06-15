@@ -1,4 +1,4 @@
-import { Form, Spin } from 'antd'
+import { Form, notification, Spin } from 'antd'
 import employeeApi from 'api/employeeApi'
 import DrawerCustom from 'components/common/DrawerCustom'
 import { FormContextCustom } from 'components/context/FormContextCustom'
@@ -55,7 +55,8 @@ const EditEmployeeModal: FC<Props> = ({
         refetch()
       })
       .catch((info) => {
-        console.log('Validate Failed:', info)
+        setLoading(false)
+        notification.error(info.message)
       })
   }
 

@@ -1,4 +1,4 @@
-import { Form } from 'antd'
+import { Form, notification } from 'antd'
 import productApi from 'api/productApi'
 import DrawerCustom from 'components/common/DrawerCustom'
 import { FormContextCustom } from 'components/context/FormContextCustom'
@@ -36,7 +36,8 @@ const CreateProductModal: FC<Props> = ({
         refetch()
       })
       .catch((info) => {
-        console.log('Validate Failed:', info)
+        setLoading(false)
+        notification.error(info.message)
       })
   }
 

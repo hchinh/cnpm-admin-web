@@ -1,4 +1,4 @@
-import { Form, Spin } from 'antd'
+import { Form, notification, Spin } from 'antd'
 import brandApi from 'api/brandApi'
 import DrawerCustom from 'components/common/DrawerCustom'
 import { FormContextCustom } from 'components/context/FormContextCustom'
@@ -50,7 +50,8 @@ const EditBrandModal: FC<Props> = ({
         refetch()
       })
       .catch((info) => {
-        console.log('Validate Failed:', info)
+        setLoading(false)
+        notification.error(info.message)
       })
   }
 
