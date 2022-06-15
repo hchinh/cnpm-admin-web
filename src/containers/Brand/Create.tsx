@@ -36,7 +36,7 @@ const CreateBrandModal: FC<Props> = ({
       })
       .catch((info) => {
         setLoading(false)
-        notification.error(info.message)
+        notification.error({ message: info.message })
       })
   }
 

@@ -52,11 +52,12 @@ const EditProductModal: FC<Props> = ({
       .then(async () => {
         setLoading(false)
         closeModal()
+        form.resetFields()
         refetch()
       })
       .catch((info) => {
         setLoading(false)
-        notification.error(info.message)
+        notification.error({ message: info.message })
       })
   }
 
