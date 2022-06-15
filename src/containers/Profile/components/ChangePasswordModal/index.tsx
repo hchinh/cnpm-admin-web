@@ -1,8 +1,12 @@
 import { Form, notification } from 'antd'
 import authApi from 'api/authApi'
+import { useAppDispatch } from 'app/hooks'
+import { unwrapResult } from '@reduxjs/toolkit'
 import ModalCustom from 'components/common/ModalCustom'
 import { ModalForwardRefHandle } from 'interfaces/modal'
 import React, { useImperativeHandle, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { logout } from 'redux/authSlice'
 import FormChangePassword from './FormChangePassword'
 
 const ChangePasswordModal: React.ForwardRefRenderFunction<ModalForwardRefHandle, unknown> = (
@@ -10,6 +14,10 @@ const ChangePasswordModal: React.ForwardRefRenderFunction<ModalForwardRefHandle,
   ref
 ) => {
   const [form] = Form.useForm()
+
+  const dispatch = useAppDispatch()
+  const { push } = useHistory()
+
   const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState<boolean>(false)
 
@@ -36,10 +44,14 @@ const ChangePasswordModal: React.ForwardRefRenderFunction<ModalForwardRefHandle,
           ...values,
         })
       })
-      .then((response: any) => {
+      .then(async (response: any) => {
         notification.success({ message: response.message })
         setLoading(false)
         handleClose()
+
+        const resultAction = await dispatch(logout())
+        unwrapResult(resultAction)
+        push('/login')
       })
       .catch((error) => {
         setLoading(false)
