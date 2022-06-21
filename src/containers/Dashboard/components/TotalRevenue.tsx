@@ -2,7 +2,7 @@ import statisticsApi from 'api/statisticsApi'
 import StatisticsCard from 'components/common/StatisticsCard'
 import { ReportParams } from 'interfaces'
 import { useEffect, useState } from 'react'
-import { formatPrice } from 'utils/textUtils'
+import { formatMoneySymbol } from 'utils/textUtils'
 
 interface Props {
   timeQuery?: ReportParams
@@ -22,7 +22,7 @@ const TotalRevenue = ({ timeQuery }: Props) => {
     })()
   }, [timeQuery])
 
-  return <StatisticsCard title='Total Revenue' customCount={formatPrice(totalRevenue)} />
+  return <StatisticsCard title='Total Revenue' customCount={formatMoneySymbol(totalRevenue)} />
 }
 
 export default TotalRevenue

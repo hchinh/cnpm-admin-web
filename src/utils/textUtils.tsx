@@ -59,3 +59,24 @@ export const formatOrderStatus = (data?: string) => {
   const restItem = ORDER_STATUS.find((item) => item.value === data)
   return <Tag color={restItem?.color}>{restItem?.text ? restItem.text : data}</Tag>
 }
+
+export const formatMoneySymbol = (num?: number | string, digits = 3) => {
+  if (!num) return '0'
+
+  const si = [
+    { value: 1, symbol: '' },
+    { value: 1e3, symbol: 'K' },
+    { value: 1e6, symbol: 'M' },
+    { value: 1e9, symbol: 'B' },
+  ]
+  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/
+  let i
+  for (i = si.length - 1; i > 0; i--) {
+    if (Math.abs(Number(num)) >= si[i].value) {
+      break
+    }
+  }
+  const resNum =
+    (Math.abs(Number(num)) / si[i].value).toFixed(digits).replace(rx, '$1') + si[i].symbol
+  return num < 0 ? `-${resNum}` : resNum
+}
